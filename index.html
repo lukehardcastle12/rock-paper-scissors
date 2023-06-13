@@ -1,23 +1,47 @@
 <script>
-    const computerChoice = getComputerChoice();
-    console.log(computerChoice);
-    let playerChoice = getPlayerChoice();
-    console.log(playerChoice);
-    console.log(playRound(playerChoice,computerChoice));
+    let computerScore=0;
+    let playerScore=0;
+    game();
+    function game(){
+
+        
+        for(i = 1; i<=5; i++){
+            const computerChoice = getComputerChoice();
+            let playerChoice = getPlayerChoice();
+            console.log(computerChoice);
+            console.log(playerChoice);
+            playRound(playerChoice,computerChoice);
+            console.log("Player: " + playerScore + " Computer: " + computerScore);
+        }
+        if(playerScore === computerScore){
+            console.log("Draw!");
+        }
+        else if(playerScore > computerScore){
+            console.log("Player Wins!");
+        }else{
+            console.log("Computer Wins");
+        }
+    }
     function playRound(playerChoice, computerChoice){
         if (playerChoice === computerChoice){
-            return "DRAW";
+            //return null;
         }
         else if(playerChoice === "rock" && computerChoice === "scissors"){
-            return "you win"
+            
+            return playerScore++;
+            //return true
         }
         else if(playerChoice === "paper" && computerChoice === "rock"){
-            return "you win"
+            
+            return playerScore++;
+            //return true
         }
         else if(playerChoice === "scissors" && computerChoice === "paper"){
-            return "you win"
+            return playerScore++;
+            
         }else{
-            return "you lose"
+            return computerScore++;
+            
         }
     }
       
