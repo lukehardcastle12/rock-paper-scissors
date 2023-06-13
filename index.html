@@ -3,8 +3,6 @@
     let playerScore=0;
     game();
     function game(){
-
-        
         for(i = 1; i<=5; i++){
             const computerChoice = getComputerChoice();
             let playerChoice = getPlayerChoice();
@@ -29,7 +27,6 @@
         else if(playerChoice === "rock" && computerChoice === "scissors"){
             console.log("Player Wins the Round");
             return playerScore++;
-            //return true
         }
         else if(playerChoice === "paper" && computerChoice === "rock"){
             console.log("Player Wins the Round");
@@ -44,12 +41,10 @@
             
         }
     }
-      
     function getPlayerChoice(){
         let playerInput = String(prompt("rock, paper or scissors?: ")).toLowerCase();
         return playerInput;
     }
-
     function getComputerChoice(){
         switch(Math.floor(Math.random()*3) + 1){
             case 1:
@@ -63,5 +58,4 @@
                 break;
         }
     }
-    
 </script>
