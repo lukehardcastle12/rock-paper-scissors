@@ -1,0 +1,43 @@
+<script>
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+    let playerChoice = getPlayerChoice();
+    console.log(playerChoice);
+    console.log(playRound(playerChoice,computerChoice));
+    function playRound(playerChoice, computerChoice){
+        if (playerChoice === computerChoice){
+            return "DRAW";
+        }
+        else if(playerChoice === "rock" && computerChoice === "scissors"){
+            return "you win"
+        }
+        else if(playerChoice === "paper" && computerChoice === "rock"){
+            return "you win"
+        }
+        else if(playerChoice === "scissors" && computerChoice === "paper"){
+            return "you win"
+        }else{
+            return "you lose"
+        }
+    }
+      
+    function getPlayerChoice(){
+        let playerInput = String(prompt("rock, paper or scissors?: ")).toLowerCase();
+        return playerInput;
+    }
+
+    function getComputerChoice(){
+        switch(Math.floor(Math.random()*3) + 1){
+            case 1:
+                return "rock";
+                break;
+            case 2:
+                return "paper";
+                break;
+            case 3:
+                return "scissors";
+                break;
+        }
+    }
+    
+</script>
