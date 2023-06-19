@@ -14,6 +14,9 @@
     <div class="result">
 
     </div>
+    <div class="winner">
+
+    </div>
     <script>
         let computerScore=0;
         let playerScore=0;
@@ -26,16 +29,19 @@
         paper.addEventListener('click', () => playRound("paper", getComputerChoice()));
         
         const scissors = document.querySelector('.scissors');
-        scissors.addEventListener('click', () => {
-            playRound("scissors", getComputerChoice())
-        });
+        scissors.addEventListener('click', () => playRound("scissors", getComputerChoice()));
 
         const results = document.querySelector('.result')
-        const whoWonRound = document.createElement('p');
-        results.appendChild(whoWonRound);
+              
         const runningScore = document.createElement('p');
         results.appendChild(runningScore);
         
+        const whoWonRound = document.createElement('p');
+        results.appendChild(whoWonRound);
+
+        const winnerContaner = document.querySelector('.winner');
+        const winnerText = document.createElement('p');
+
         function playRound(playerChoice,computerChoice){
             console.log(playerChoice);
             console.log(computerChoice);
@@ -69,6 +75,21 @@
                 computerScore++;
             }
             runningScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+            console.log(gameCount);
+            if(gameCount >= 5){
+                const element = document.querySelector('.buttons');
+                element.remove();
+                let winnerTextContent;
+                if(playerScore > computerScore){
+                    winnerTextContent = 'Player Wins the Game!';
+                }else if(playerScore < computerScore){
+                    winnerTextContent = 'Computer Wins the Game!';
+                }else{
+                    winnerTextContent = 'The Game is a Draw!';
+                }
+                winnerText.textContent = winnerTextContent;
+                winnerContaner.appendChild(winnerText);
+            }
         }
 
         function getComputerChoice(){
