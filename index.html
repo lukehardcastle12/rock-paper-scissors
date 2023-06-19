@@ -1,61 +1,83 @@
-<script>
-    let computerScore=0;
-    let playerScore=0;
-    game();
-    function game(){
-        for(i = 1; i<=5; i++){
-            const computerChoice = getComputerChoice();
-            let playerChoice = getPlayerChoice();
-            console.log(computerChoice);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="buttons">
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+    </div>
+    <div class="result">
+
+    </div>
+    <script>
+        let computerScore=0;
+        let playerScore=0;
+        let gameCount=0;
+
+        const rock = document.querySelector('.rock');
+        rock.addEventListener('click', () => playRound("rock", getComputerChoice()));
+        
+        const paper = document.querySelector('.paper');
+        paper.addEventListener('click', () => playRound("paper", getComputerChoice()));
+        
+        const scissors = document.querySelector('.scissors');
+        scissors.addEventListener('click', () => {
+            playRound("scissors", getComputerChoice())
+        });
+
+        const results = document.querySelector('.result')
+        const scoreElement = document.createElement('p');
+        
+        function playRound(playerChoice,computerChoice){
             console.log(playerChoice);
-            playRound(playerChoice,computerChoice);
-            console.log("Player: " + playerScore + " Computer: " + computerScore);
+            console.log(computerChoice);
+            let score = '';
+
+            if (playerChoice === computerChoice){
+                console.log("This Round is a Draw!");
+                gameCount++;
+            }
+            else if(playerChoice === "rock" && computerChoice === "scissors"){
+                console.log("Player Wins the Round");
+                gameCount++;
+                return playerScore++;
+            }
+            else if(playerChoice === "paper" && computerChoice === "rock"){
+                console.log("Player Wins the Round");
+                gameCount++;
+                return playerScore++;
+            }
+            else if(playerChoice === "scissors" && computerChoice === "paper"){
+                console.log("Player Wins the Round");
+                gameCount++;
+                return playerScore++;
+            }else{
+                console.log("Computer Wins the Round");
+                gameCount++;
+                return computerScore++;
+            }
         }
-        if(playerScore === computerScore){
-            console.log("Draw!");
+
+        function getComputerChoice(){
+            switch(Math.floor(Math.random()*3) + 1){
+                case 1:
+                    return "rock";
+                    break;
+                case 2:
+                    return "paper";
+                    break;
+                case 3:
+                    return "scissors";
+                    break;
+            }
         }
-        else if(playerScore > computerScore){
-            console.log("Player Wins!");
-        }else{
-            console.log("Computer Wins!");
-        }
-    }
-    function playRound(playerChoice, computerChoice){
-        if (playerChoice === computerChoice){
-            console.log("This Round is a Draw!");
-        }
-        else if(playerChoice === "rock" && computerChoice === "scissors"){
-            console.log("Player Wins the Round");
-            return playerScore++;
-        }
-        else if(playerChoice === "paper" && computerChoice === "rock"){
-            console.log("Player Wins the Round");
-            return playerScore++;
-        }
-        else if(playerChoice === "scissors" && computerChoice === "paper"){
-            console.log("Player Wins the Round");
-            return playerScore++;
-        }else{
-            console.log("Computer Wins the Round");
-            return computerScore++;
-            
-        }
-    }
-    function getPlayerChoice(){
-        let playerInput = String(prompt("rock, paper or scissors?: ")).toLowerCase();
-        return playerInput;
-    }
-    function getComputerChoice(){
-        switch(Math.floor(Math.random()*3) + 1){
-            case 1:
-                return "rock";
-                break;
-            case 2:
-                return "paper";
-                break;
-            case 3:
-                return "scissors";
-                break;
-        }
-    }
-</script>
+        
+        
+    </script>
+</body>
+</html>
